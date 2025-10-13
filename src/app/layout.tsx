@@ -1,17 +1,12 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/Components/Header/Navbar";
 import LenisWrapper from "@/Components/Wrappers/LenisWrapper";
+import { Sigmar } from "next/font/google";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const sigmar = Sigmar({
   subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+  weight: "400",
 });
 
 export const metadata: Metadata = {
@@ -26,9 +21,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <body className={`${sigmar.className}  antialiased`}>
         <LenisWrapper>
           <Navbar />
           {children}
