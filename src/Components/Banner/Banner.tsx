@@ -27,10 +27,19 @@ const Banner = () => {
     const tl = gsap.timeline();
     tl.from(conainerRef.current, {
       x: "100vw",
-      duration: 1.5,
+      duration: 2.5,
       delay,
       ease: "power2.out",
     })
+      .to(
+        conainerRef.current,
+        {
+          rotate: 15,
+          duration: 1,
+          ease: "power2.out",
+        },
+        "<0.3"
+      )
       .to(
         conainerRef.current,
         {
@@ -124,7 +133,7 @@ const Banner = () => {
         className="w-fit h-fit relative md:-z-15 md:mt-[5vw]"
       >
         <Image
-          src="/images/car.png"
+          src="/images/bike.png"
           alt="Taner Acar"
           priority
           width={1920}
