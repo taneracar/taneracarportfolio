@@ -1,11 +1,13 @@
 "use client";
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
+import { useContextProvider } from "./ContextProvider";
 
 const SplashScreen = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const textRef = useRef<HTMLDivElement>(null);
   const svgRef = useRef<HTMLDivElement>(null);
+  const { showSplash, dispatch } = useContextProvider();
 
   const words = [
     "Hello",
@@ -20,6 +22,10 @@ const SplashScreen = () => {
   ];
 
   useEffect(() => {
+    if (sessionStorage.getItem("splashShown")) {
+      dispatch(false);
+      return;
+    }
     const tl = gsap.timeline({ defaults: { ease: "power3.inOut" } });
 
     gsap.to(svgRef.current, {
@@ -72,6 +78,10 @@ const SplashScreen = () => {
         yPercent: -100,
         duration: 1.2,
         ease: "power4.inOut",
+        onComplete: () => {
+          sessionStorage.setItem("splashShown", "true");
+          dispatch(false);
+        },
       },
       "+=0.3"
     );
@@ -80,6 +90,7 @@ const SplashScreen = () => {
     };
   }, []);
 
+  if (!showSplash) return null;
   return (
     <div
       ref={containerRef}
