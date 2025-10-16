@@ -5,9 +5,11 @@ import React from "react";
 import TextPressure from "./TextPressure";
 import ContactButton from "./ContactButton";
 import gsap from "gsap";
+import { useTransitionRouter } from "next-view-transitions";
+import { useGSAP } from "@gsap/react";
 const items = [
   { label: "About", href: "/about" },
-  { label: "Services", href: "/services" },
+  { label: "Works", href: "/works" },
   { label: "Contact", href: "/contact" },
 ];
 const DesktopMenu = () => {
@@ -17,6 +19,7 @@ const DesktopMenu = () => {
   const rightContentRef = useRef<HTMLDivElement>(null);
   const middleContentRef = useRef<HTMLDivElement>(null);
   const middleItemRefs = useRef<HTMLDivElement[]>([]);
+  const router = useTransitionRouter();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -32,7 +35,7 @@ const DesktopMenu = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [lastScrollY]);
 
-  useEffect(() => {
+  useGSAP(() => {
     if (hideNavbar) {
       const tl = gsap.timeline();
       tl.to(leftContentRef.current, {
@@ -99,6 +102,12 @@ const DesktopMenu = () => {
             ref={(el) => {
               if (el) middleItemRefs.current[i] = el;
             }}
+            onClick={(e) => {
+              e.preventDefault();
+              router.push(item.href, {
+                onTransitionReady: pageAnimation,
+              });
+            }}
           >
             <ContactButton text={item.label} link={item.href} />
           </div>
@@ -110,5 +119,45 @@ const DesktopMenu = () => {
     </nav>
   );
 };
+const pageAnimation = () => {
+  document.documentElement.animate(
+    [
+      {
+        opacity: 1,
+        scale: 1,
+        transform: "translateY(0)",
+      },
+      {
+        opacity: 0,
+        scale: 0,
+        transform: "translateY(-100px)",
+      },
+    ],
+    {
+      duration: 1000,
+      easing: "cubic-bezier(0.76, 0, 0.24, 1)",
+      fill: "forwards",
+      pseudoElement: "::view-transition-old(root)",
+    }
+  );
 
+  document.documentElement.animate(
+    [
+      {
+        transform: "translateY(100%)",
+        rotate: "15deg",
+      },
+      {
+        transform: "translateY(0)",
+        rotate: "0deg",
+      },
+    ],
+    {
+      duration: 1000,
+      easing: "cubic-bezier(0.76, 0, 0.24, 1)",
+      fill: "forwards",
+      pseudoElement: "::view-transition-new(root)",
+    }
+  );
+};
 export default DesktopMenu;

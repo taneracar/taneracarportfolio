@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { ViewTransitions } from "next-view-transitions";
 import "./globals.css";
 import Navbar from "@/Components/Header/Navbar";
 import LenisWrapper from "@/Components/Wrappers/LenisWrapper";
@@ -7,6 +8,7 @@ import { Sigmar } from "next/font/google";
 const sigmar = Sigmar({
   subsets: ["latin"],
   weight: "400",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -20,13 +22,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${sigmar.className}  antialiased`}>
-        <LenisWrapper>
-          <Navbar />
-          {children}
-        </LenisWrapper>
-      </body>
-    </html>
+    <ViewTransitions>
+      <html lang="en">
+        <body className={`${sigmar.className}  antialiased`}>
+          <LenisWrapper>
+            <Navbar />
+            {children}
+          </LenisWrapper>
+        </body>
+      </html>
+    </ViewTransitions>
   );
 }
