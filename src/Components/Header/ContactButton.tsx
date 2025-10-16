@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import Image from "next/image";
 import Link from "next/link";
+import { useGSAP } from "@gsap/react";
 
 type props = {
   text?: string;
@@ -13,7 +14,7 @@ export default function ContactButton({ text, link, image }: props) {
   const containerRef = useRef<HTMLDivElement>(null);
   const container2Ref = useRef<HTMLDivElement>(null);
   const [isHovered, setIsHovered] = useState(false);
-  useEffect(() => {
+  useGSAP(() => {
     const tl = gsap.timeline();
     if (isHovered) {
       tl.to(containerRef.current, {
@@ -64,9 +65,6 @@ export default function ContactButton({ text, link, image }: props) {
           "<0.1"
         );
     }
-    return () => {
-      tl.kill();
-    };
   }, [isHovered]);
   return (
     <div className="w-full flex items-center justify-end">
