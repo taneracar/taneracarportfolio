@@ -4,10 +4,13 @@ import gsap from "gsap";
 import Image from "next/image";
 import { useRef } from "react";
 import SplitText from "./SplitText";
+import { useContextProvider } from "../Common/ContextProvider";
 
 const Banner = () => {
   const conainerRef = useRef<HTMLDivElement>(null);
   const imageRef = useRef<HTMLImageElement>(null);
+  const { showSplash } = useContextProvider();
+  const delay = showSplash ? 3.5 : 0;
   useGSAP(() => {
     gsap.fromTo(
       imageRef.current,
@@ -17,7 +20,7 @@ const Banner = () => {
       {
         opacity: 1,
         duration: 1,
-        delay: 3.5,
+        delay,
         ease: "power2.out",
       }
     );
@@ -25,8 +28,8 @@ const Banner = () => {
     tl.from(conainerRef.current, {
       x: "100vw",
       duration: 1.5,
+      delay,
       ease: "power2.out",
-      delay: 3.2,
     })
       .to(
         conainerRef.current,
@@ -105,6 +108,7 @@ const Banner = () => {
         from={{ opacity: 0, y: 40 }}
         to={{ opacity: 1, y: 0 }}
         threshold={0.1}
+        showSplash={showSplash}
       />
       <Image
         ref={imageRef}

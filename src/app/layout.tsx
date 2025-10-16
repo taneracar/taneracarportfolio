@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "@/Components/Header/Navbar";
 import LenisWrapper from "@/Components/Wrappers/LenisWrapper";
 import { Sigmar } from "next/font/google";
+import { ContextProvider } from "@/Components/Common/ContextProvider";
 
 const sigmar = Sigmar({
   subsets: ["latin"],
@@ -25,10 +26,12 @@ export default function RootLayout({
     <ViewTransitions>
       <html lang="en">
         <body className={`${sigmar.className}  antialiased`}>
-          <LenisWrapper>
-            <Navbar />
-            {children}
-          </LenisWrapper>
+          <ContextProvider>
+            <LenisWrapper>
+              <Navbar />
+              {children}
+            </LenisWrapper>
+          </ContextProvider>
         </body>
       </html>
     </ViewTransitions>

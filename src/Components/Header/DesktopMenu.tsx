@@ -92,7 +92,17 @@ const DesktopMenu = () => {
   }, [hideNavbar]);
   return (
     <nav className="hidden md:flex h-[5vw] justify-between items-center w-full">
-      <Link ref={leftContentRef} href="/" className="md:w-[12vw]">
+      <Link
+        ref={leftContentRef}
+        onClick={(e) => {
+          e.preventDefault();
+          router.push("/", {
+            onTransitionReady: pageAnimation,
+          });
+        }}
+        href="/"
+        className="md:w-[12vw]"
+      >
         <TextPressure text="TANER ACAR" />
       </Link>
       <div ref={middleContentRef} className="flex gap-[1vw]">

@@ -1,5 +1,10 @@
+"use client";
+import { useRef } from "react";
+import { useContextProvider } from "../Common/ContextProvider";
 import DesktopMenu from "./DesktopMenu";
 import MobileMenu from "./MobileMenu";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
 
 const menuItems = [
   { label: "Home", ariaLabel: "Go to home page", link: "/" },
@@ -14,8 +19,29 @@ const socialItems = [
   { label: "LinkedIn", link: "https://linkedin.com" },
 ];
 const Navbar = () => {
+  const { showSplash } = useContextProvider();
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useGSAP(() => {
+    gsap.fromTo(
+      containerRef.current,
+      {
+        opacity: 0,
+      },
+      {
+        opacity: 1,
+        duration: 2,
+        delay: 3.2,
+        ease: "power2.out",
+      }
+    );
+  });
+  if (showSplash) return null;
   return (
-    <div className="fixed top-0 left-0 z-50 bg-transparent flex w-full h-[65px] md:h-[5vw] items-center justify-between px-[3vw] pt-[0.5vw]">
+    <div
+      ref={containerRef}
+      className="fixed top-0 left-0 z-50 bg-transparent flex w-full h-[65px] md:h-[5vw] items-center justify-between px-[3vw] pt-[0.5vw]"
+    >
       <DesktopMenu />
       <div className="md:hidden">
         <MobileMenu

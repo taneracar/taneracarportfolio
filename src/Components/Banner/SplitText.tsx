@@ -3,6 +3,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SplitText as GSAPSplitText } from "gsap/SplitText";
 import { useGSAP } from "@gsap/react";
+import { useContextProvider } from "../Common/ContextProvider";
 
 gsap.registerPlugin(ScrollTrigger, GSAPSplitText, useGSAP);
 
@@ -20,6 +21,7 @@ export interface SplitTextProps {
   tag?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "p" | "span";
   textAlign?: React.CSSProperties["textAlign"];
   onLetterAnimationComplete?: () => void;
+  showSplash?: boolean;
 }
 
 const SplitText: React.FC<SplitTextProps> = ({
@@ -36,6 +38,7 @@ const SplitText: React.FC<SplitTextProps> = ({
   tag = "p",
   textAlign = "start",
   onLetterAnimationComplete,
+  showSplash,
 }) => {
   const ref = useRef<HTMLParagraphElement>(null);
   const animationCompletedRef = useRef(false);
@@ -105,7 +108,7 @@ const SplitText: React.FC<SplitTextProps> = ({
             {
               ...to,
               duration,
-              delay: 3.5,
+              delay: showSplash ? 3.5 : 1,
               ease,
               stagger: delay / 7000,
               scrollTrigger: {
