@@ -5,6 +5,7 @@ import { MotionPathPlugin, ScrollTrigger } from "gsap/all";
 import React, { useRef } from "react";
 import { useContextProvider } from "./ContextProvider";
 import Works from "../HomePage/Works/Works";
+import ScrollReveal from "./ScrollReveal";
 
 gsap.registerPlugin(MotionPathPlugin, ScrollTrigger);
 
@@ -49,6 +50,15 @@ const SvgPath = () => {
         ease: "sine.out",
         fill: "#ee4d2f",
       })
+      .to(
+        ".will-fade",
+        {
+          opacity: 0,
+          duration: 1,
+          ease: "sine.out",
+        },
+        "<"
+      )
       .fromTo(
         worksRef.current,
         {
@@ -71,6 +81,74 @@ const SvgPath = () => {
         ref={containerRef}
         className="w-full h-[300vh] -mt-[20vw] relative -z-2"
       >
+        <div className="will-fade absolute right-[3vw] mt-[30vw] w-[35vw]">
+          {" "}
+          <ScrollReveal
+            baseOpacity={0}
+            enableBlur={false}
+            baseRotation={5}
+            blurStrength={10}
+            textClassName="text-white text-[5vw]"
+          >
+            ABOUT ME
+          </ScrollReveal>
+        </div>
+        <div className="will-fade absolute left-[3vw] mt-[40vw] w-[35vw]">
+          {" "}
+          <ScrollReveal
+            baseOpacity={0}
+            enableBlur={true}
+            baseRotation={5}
+            blurStrength={10}
+            textClassName="text-white text-[2vw]"
+          >
+            When does a man die? When he is hit by a bullet? No! When he suffers
+            a disease? No! When he ate a soup made out of a poisonous mushroom?
+            No! A man dies when he is forgotten!
+          </ScrollReveal>
+        </div>
+        <div className="will-fade absolute right-[3vw] mt-[65vw] w-[35vw]">
+          {" "}
+          <ScrollReveal
+            baseOpacity={0}
+            enableBlur={true}
+            baseRotation={5}
+            blurStrength={10}
+            textClassName="text-white text-[2vw]"
+          >
+            When does a man die? When he is hit by a bullet? No! When he suffers
+            a disease? No! When he ate a soup made out of a poisonous mushroom?
+            No! A man dies when he is forgotten!
+          </ScrollReveal>
+        </div>
+        <div className="will-fade absolute left-[3vw] mt-[90vw] w-[35vw]">
+          {" "}
+          <ScrollReveal
+            baseOpacity={0}
+            enableBlur={true}
+            baseRotation={5}
+            blurStrength={10}
+            textClassName="text-white text-[2vw]"
+          >
+            When does a man die? When he is hit by a bullet? No! When he suffers
+            a disease? No! When he ate a soup made out of a poisonous mushroom?
+            No! A man dies when he is forgotten!
+          </ScrollReveal>
+        </div>
+        <div className="will-fade absolute right-[3vw] mt-[115vw] w-[35vw]">
+          {" "}
+          <ScrollReveal
+            baseOpacity={0}
+            enableBlur={true}
+            baseRotation={5}
+            blurStrength={10}
+            textClassName="text-white text-[2vw]"
+          >
+            When does a man die? When he is hit by a bullet? No! When he suffers
+            a disease? No! When he ate a soup made out of a poisonous mushroom?
+            No! A man dies when he is forgotten!
+          </ScrollReveal>
+        </div>
         <svg
           id="trackSvg"
           viewBox="0 0 300 1200"
@@ -112,6 +190,7 @@ const SvgPath = () => {
           </g>
         </svg>
       </div>
+
       <div ref={worksRef}>
         <div className="fixed inset-0 z-40 bg-transparent flex flex-col items-center justify-center">
           <h2 className="h2 text-[22vw]">WORKS</h2>
