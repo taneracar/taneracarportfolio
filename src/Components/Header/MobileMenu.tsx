@@ -2,7 +2,6 @@
 "use client";
 import React, { useCallback, useLayoutEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
-import Image from "next/image";
 import Link from "next/link";
 import TextPressure from "./TextPressure";
 
