@@ -8,7 +8,9 @@ export default function Home() {
   return (
     <PageWrapper>
       <SplashScreen />
-      <SplashCursor />
+      <div className="hidden md:block">
+        <SplashCursor />
+      </div>
       <Banner />
       <SvgPath />
     </PageWrapper>
