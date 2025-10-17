@@ -46,7 +46,7 @@ const DesktopMenu = () => {
         .to(
           middleItemRefs.current,
           {
-            y: -100,
+            y: -300,
             stagger: 0.1,
             ease: "power2.in",
             duration: 0.5,

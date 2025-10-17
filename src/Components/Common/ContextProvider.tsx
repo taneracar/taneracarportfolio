@@ -5,6 +5,8 @@ import { createContext, useContext, useState, ReactNode } from "react";
 type ContextType = {
   showSplash: boolean;
   dispatch: (value: boolean) => void;
+  showCursor: boolean;
+  dispatchCursor: (value: boolean) => void;
 };
 
 const ContextProviderContext = createContext<ContextType | undefined>(
@@ -17,14 +19,18 @@ type Props = {
 
 export const ContextProvider = ({ children }: Props) => {
   const [showSplash, setShowSplash] = useState(true);
+  const [showCursor, setShowCursor] = useState(true);
 
   const dispatch = (value: boolean) => setShowSplash(value);
+  const dispatchCursor = (value: boolean) => setShowCursor(value);
 
   return (
     <ContextProviderContext.Provider
       value={{
         showSplash,
         dispatch,
+        showCursor,
+        dispatchCursor,
       }}
     >
       {children}
