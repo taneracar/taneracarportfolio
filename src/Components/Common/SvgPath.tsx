@@ -20,6 +20,8 @@ const SvgPath = () => {
         start: "top top+=400",
         end: "bottom bottom",
         scrub: true,
+        onLeave: () => dispatchCursor(false),
+        onEnterBack: () => dispatchCursor(true),
       },
     });
     tl.to("#rect", {
@@ -38,8 +40,6 @@ const SvgPath = () => {
         end: "+=2000",
         scrub: true,
         pin: true,
-        onLeave: () => dispatchCursor(false),
-        onEnterBack: () => dispatchCursor(true),
       },
     });
     tl2
