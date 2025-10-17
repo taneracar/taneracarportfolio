@@ -2,6 +2,7 @@
 
 "use client";
 import React, { useEffect, useRef } from "react";
+import { useContextProvider } from "./ContextProvider";
 
 interface ColorRGB {
   r: number;
@@ -1510,9 +1511,15 @@ export default function SplashCursor({
     BACK_COLOR,
     TRANSPARENT,
   ]);
-
+  const { showCursor } = useContextProvider();
   return (
-    <div className="fixed top-[0] left-0 z-10 pointer-events-none w-full h-full">
+    <div
+      className={`${
+        !showCursor
+          ? "hidden"
+          : "fixed top-[0] left-0 z-20 pointer-events-none w-full h-full"
+      }`}
+    >
       <canvas
         ref={canvasRef}
         id="fluid"

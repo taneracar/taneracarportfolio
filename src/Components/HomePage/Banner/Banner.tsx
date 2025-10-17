@@ -4,7 +4,7 @@ import gsap from "gsap";
 import Image from "next/image";
 import { useRef } from "react";
 import SplitText from "./SplitText";
-import { useContextProvider } from "../Common/ContextProvider";
+import { useContextProvider } from "../../Common/ContextProvider";
 
 const Banner = () => {
   const conainerRef = useRef<HTMLDivElement>(null);
@@ -105,7 +105,7 @@ const Banner = () => {
       );
   });
   return (
-    <div className="w-full px-[6vw] md:px-[3vw] md:pt-[5vw] relative h-[90vh] md:h-[100vh]">
+    <div className="w-full px-[6vw] md:px-[3vw] md:pt-[5vw] bg-black relative h-[90vh] md:h-[100vh]">
       <SplitText
         text="Turning Ideas Into Interactive Realities."
         className="text-[10vw] pt-[60vh] leading-[1.2] md:text-[6.5vw] md:w-[65%] md:pt-[5vw] md:leading-[1.1] relative z-15"
@@ -126,11 +126,11 @@ const Banner = () => {
         priority
         width={1080}
         height={1920}
-        className="absolute max-md:top-0 md:bottom-0 right-0 -z-10 h-[90vh] md:h-full w-[100vw] md:w-[33vw] object-cover"
+        className="absolute max-md:top-0 md:bottom-0 right-0 z-15 h-[90vh] md:h-full w-[100vw] md:w-[33vw] object-cover"
       />
       <div
         ref={conainerRef}
-        className="w-fit h-fit relative md:-z-15 md:mt-[5vw]"
+        className="w-fit h-fit relative md:z-16 md:mt-[5vw]"
       >
         <Image
           src="/images/bike.png"
@@ -141,7 +141,7 @@ const Banner = () => {
           className="object-contain w-[40vw] h-[20vw] md:w-[20vw] md:h-[10vw] -ml-[6vw] md:-ml-[3vw]"
         />
       </div>
-      <div className="absolute h-full w-[100vw] md:w-[33vw] right-0 bottom-0 -z-10 bg-gradient-to-t from-black/100 via-black/20 to-transparent"></div>
+      <div className="absolute h-full w-[100vw] md:w-[33vw] right-0 bottom-0 z-15 bg-gradient-to-t from-black/100 via-black/20 to-transparent"></div>
     </div>
   );
 };
