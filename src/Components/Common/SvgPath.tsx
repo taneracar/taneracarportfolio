@@ -4,7 +4,6 @@ import gsap from "gsap";
 import { MotionPathPlugin, ScrollTrigger } from "gsap/all";
 import React, { useRef } from "react";
 import { useContextProvider } from "./ContextProvider";
-import Works from "../HomePage/Works/Works";
 import ScrollReveal from "./ScrollReveal";
 
 gsap.registerPlugin(MotionPathPlugin, ScrollTrigger);
