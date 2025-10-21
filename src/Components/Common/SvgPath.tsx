@@ -103,11 +103,11 @@ const SvgPath = () => {
         "<"
       )
       .to(".char", {
-        y: "-90vw",
+        y: "-86vw",
         duration: 2,
         ease: "sine.out",
         stagger: {
-          each: 0.02,
+          each: 0.015,
           from: "end",
         },
       })
@@ -115,7 +115,7 @@ const SvgPath = () => {
         worksCardRef.current,
         {
           duration: 2,
-          y: "-90vw",
+          y: "-86vw",
           ease: "sine.out",
         },
         "<"
