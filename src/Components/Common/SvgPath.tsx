@@ -5,6 +5,8 @@ import { MotionPathPlugin, ScrollTrigger } from "gsap/all";
 import React, { useRef } from "react";
 import { useContextProvider } from "./ContextProvider";
 import ScrollReveal from "./ScrollReveal";
+import ImageTrail from "../HomePage/Works/ImageTrail";
+import Magnet from "./MagnetHover";
 
 gsap.registerPlugin(MotionPathPlugin, ScrollTrigger);
 
@@ -103,11 +105,11 @@ const SvgPath = () => {
         "<"
       )
       .to(".char", {
-        y: "-90vw",
+        y: "-86vw",
         duration: 2,
         ease: "sine.out",
         stagger: {
-          each: 0.02,
+          each: 0.015,
           from: "end",
         },
       })
@@ -115,11 +117,14 @@ const SvgPath = () => {
         worksCardRef.current,
         {
           duration: 2,
-          y: "-90vw",
+          y: "-86vw",
           ease: "sine.out",
         },
         "<"
-      );
+      )
+      .from(".b1", { rotate: 0, duration: 1, ease: "sine.out" }, "<0.5")
+      .from(".b2", { rotate: 0, duration: 1, ease: "sine.out" }, "<0.5")
+      .from(".b3", { rotate: 0, duration: 1, ease: "sine.out" }, "<0.5");
   });
   return (
     <>
@@ -244,14 +249,61 @@ const SvgPath = () => {
             ref={worksCardRef}
             className="px-[3vw] w-full flex gap-[4vw] flex-wrap opacity-0"
           >
-            <div className="w-[45vw] h-[45vw] border border-rose-300"></div>
-            <div className="w-[45vw] h-[45vw] border border-rose-300"></div>
-            <div className="w-[45vw] h-[45vw] border border-rose-300"></div>
+            <div className="w-[45vw] h-[45vw] border border-rose-300 relative overflow-hidden">
+              {" "}
+              <ImageTrail
+                items={[
+                  "https://picsum.photos/id/287/300/300",
+                  "https://picsum.photos/id/1001/300/300",
+                  "https://picsum.photos/id/1025/300/300",
+                  "https://picsum.photos/id/1026/300/300",
+                  "https://picsum.photos/id/1027/300/300",
+                  "https://picsum.photos/id/1028/300/300",
+                  "https://picsum.photos/id/1029/300/300",
+                  "https://picsum.photos/id/1030/300/300",
+                ]}
+                variant={1}
+              />
+            </div>
+            <div className="w-[45vw] h-[45vw] border border-rose-300 relative overflow-hidden">
+              {" "}
+              <ImageTrail
+                items={[
+                  "https://picsum.photos/id/287/300/300",
+                  "https://picsum.photos/id/1001/300/300",
+                  "https://picsum.photos/id/1025/300/300",
+                  "https://picsum.photos/id/1026/300/300",
+                  "https://picsum.photos/id/1027/300/300",
+                  "https://picsum.photos/id/1028/300/300",
+                  "https://picsum.photos/id/1029/300/300",
+                  "https://picsum.photos/id/1030/300/300",
+                ]}
+                variant={1}
+              />
+            </div>
+            <div className="w-[45vw] h-[45vw] border border-rose-300 relative overflow-hidden">
+              {" "}
+              <ImageTrail
+                items={[
+                  "https://picsum.photos/id/287/300/300",
+                  "https://picsum.photos/id/1001/300/300",
+                  "https://picsum.photos/id/1025/300/300",
+                  "https://picsum.photos/id/1026/300/300",
+                  "https://picsum.photos/id/1027/300/300",
+                  "https://picsum.photos/id/1028/300/300",
+                  "https://picsum.photos/id/1029/300/300",
+                  "https://picsum.photos/id/1030/300/300",
+                ]}
+                variant={1}
+              />
+            </div>
             <div className="w-[45vw] h-[45vw] border border-rose-300 relative flex items-center justify-center">
-              <p className="text-[4vw]">View All</p>
-              <div className="w-[45vw] h-[45vw] border border-rose-300 absolute inset-0 rotate-2"></div>
-              <div className="w-[45vw] h-[45vw] border border-rose-300 absolute inset-0 rotate-4"></div>
-              <div className="w-[45vw] h-[45vw] border border-rose-300 absolute inset-0 rotate-6"></div>
+              <Magnet padding={250} disabled={false} magnetStrength={2}>
+                <p className="text-[4vw] cursor-pointer">View All</p>
+              </Magnet>
+              <div className="b1 w-[45vw] h-[45vw] border border-rose-300 absolute inset-0 rotate-2"></div>
+              <div className="b2 w-[45vw] h-[45vw] border border-rose-300 absolute inset-0 rotate-4"></div>
+              <div className="b3 w-[45vw] h-[45vw] border border-rose-300 absolute inset-0 rotate-6"></div>
             </div>
           </div>
         </div>
