@@ -11,8 +11,23 @@ gsap.registerPlugin(MotionPathPlugin, ScrollTrigger);
 const SvgPath = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const worksRef = useRef<HTMLDivElement>(null);
+  const worksCardRef = useRef<HTMLDivElement>(null);
   const { dispatchCursor } = useContextProvider();
   useGSAP(() => {
+    const h2 = document.querySelector(".h2");
+    if (h2 && h2.textContent) {
+      const text = h2.textContent;
+      h2.innerHTML = text
+        .split("")
+        .map(
+          (char) =>
+            `<span class="char inline-block">${
+              char === " " ? "&nbsp;" : char
+            }</span>`
+        )
+        .join("");
+    }
+
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: containerRef.current,
@@ -36,7 +51,7 @@ const SvgPath = () => {
       scrollTrigger: {
         trigger: containerRef.current,
         start: "bottom bottom",
-        end: "+=2000",
+        end: "+=3000",
         scrub: true,
         pin: true,
       },
@@ -45,7 +60,7 @@ const SvgPath = () => {
       .to("#rect", {
         scale: 100,
         rotate: 180,
-        duration: 2,
+        duration: 3,
         ease: "sine.out",
         fill: "#ee4d2f",
       })
@@ -69,10 +84,42 @@ const SvgPath = () => {
           ease: "sine.out",
         }
       )
-      .to(".h2", {
-        y: "-25vh",
+      .to(".char", {
+        y: "-12vw",
         ease: "sine.out",
-      });
+        stagger: {
+          each: 0.1,
+          from: "start",
+        },
+      })
+      .to(
+        worksCardRef.current,
+        {
+          opacity: 1,
+          duration: 1,
+          y: "-15vw",
+          ease: "sine.out",
+        },
+        "<"
+      )
+      .to(".char", {
+        y: "-90vw",
+        duration: 2,
+        ease: "sine.out",
+        stagger: {
+          each: 0.02,
+          from: "end",
+        },
+      })
+      .to(
+        worksCardRef.current,
+        {
+          duration: 2,
+          y: "-90vw",
+          ease: "sine.out",
+        },
+        "<"
+      );
   });
   return (
     <>
@@ -192,7 +239,21 @@ const SvgPath = () => {
 
       <div ref={worksRef}>
         <div className="fixed inset-0 z-40 bg-transparent flex flex-col items-center justify-center">
-          <h2 className="h2 text-[22vw]">WORKS</h2>
+          <h2 className="h2 text-[22vw] mt-[90vw]">WORKS</h2>
+          <div
+            ref={worksCardRef}
+            className="px-[3vw] w-full flex gap-[4vw] flex-wrap opacity-0"
+          >
+            <div className="w-[45vw] h-[45vw] border border-rose-300"></div>
+            <div className="w-[45vw] h-[45vw] border border-rose-300"></div>
+            <div className="w-[45vw] h-[45vw] border border-rose-300"></div>
+            <div className="w-[45vw] h-[45vw] border border-rose-300 relative flex items-center justify-center">
+              <p className="text-[4vw]">View All</p>
+              <div className="w-[45vw] h-[45vw] border border-rose-300 absolute inset-0 rotate-2"></div>
+              <div className="w-[45vw] h-[45vw] border border-rose-300 absolute inset-0 rotate-4"></div>
+              <div className="w-[45vw] h-[45vw] border border-rose-300 absolute inset-0 rotate-6"></div>
+            </div>
+          </div>
         </div>
       </div>
     </>
