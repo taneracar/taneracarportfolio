@@ -1,8 +1,9 @@
 export default function Works() {
   return (
-    <div className="w-full h-screen flex items-center">
-      <h1 classNme="text-[8vw] text-white mt-[4vw]">Works</h1>
-      <div></div>
+    <div className="w-full h-screen flex justify-center">
+      <h1 className="text-[15vw] text-white mt-[4vw]">My Works</h1>
+
+      <div className=""></div>
     </div>
   );
 }
